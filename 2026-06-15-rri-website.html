@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RRI Home - R &amp; R Industries</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; font-size: 16px; line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
+img { display: block; }
+
+/* ─── TOP BAR ─── */
+.top-bar {
+  background: #2C3E50;
+  color: #fff;
+  font-size: 13px;
+  padding: 7px 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 28px;
+}
+.top-bar a { color: rgba(255,255,255,.85); }
+.top-bar a:hover { color: #fff; }
+
+/* ─── NAV ─── */
+.main-nav {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 6px rgba(0,0,0,.07);
+}
+.logo { padding: 10px 0; }
+.logo img { height: 45px; }
+
+.nav-links { display: flex; list-style: none; align-items: center; }
+.nav-links > li { position: relative; }
+.nav-links > li > a {
+  display: block;
+  padding: 22px 13px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2C3E50;
+  transition: color .18s;
+  white-space: nowrap;
+}
+.nav-links > li > a:hover { color: #84cc16; }
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: 3px solid #2C3E50;
+  min-width: 210px;
+  z-index: 300;
+  box-shadow: 0 6px 16px rgba(0,0,0,.1);
+}
+.nav-links > li:hover .dropdown { display: block; }
+.dropdown li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #2C3E50;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background .15s;
+}
+.dropdown li:last-child a { border-bottom: none; }
+.dropdown li a:hover { background: #f5f5f5; color: #84cc16; }
+
+.nav-cta > a {
+  background: #2C3E50 !important;
+  color: #F5F5F3 !important;
+  padding: 10px 20px !important;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+.nav-cta > a:hover { background: #1a2a3a !important; color: #fff !important; }
+
+/* ─── HERO (50/50 split) ─── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  background: #2C3E50;
+}
+.hero-img {
+  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Construction-Street-Orange-SMALL.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+}
+.hero-text {
+  padding: 72px 56px 72px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-text h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #F5F5F3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.hero-text p {
+  color: #F5F5F3;
+  font-size: 15px;
+  margin-bottom: 10px;
+  opacity: .95;
+}
+.hero-text h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #F5F5F3;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin: 20px 0 14px;
+  line-height: 1.25;
+}
+.hero-text .hero-sub { opacity: .85; }
+.btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #84cc16;
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  margin-top: 22px;
+  width: fit-content;
+  transition: background .2s;
+}
+.btn-main:hover { background: #6aac0e; color: #fff; }
+.btn-main::after { content: '→'; font-size: 18px; }
+
+/* ─── SECTION WRAPPER ─── */
+.rri-section { padding: 60px 80px; }
+.rri-section-sm { padding: 48px 80px; }
+
+/* ─── FEATURES (bg #E6E8EB) ─── */
+.features-wrap { background: #E6E8EB; }
+.features-wrap h2 {
+  text-align: center;
+  color: #2C3E50;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 44px;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.feature img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+.feature h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.feature p { font-size: 14px; color: #555; line-height: 1.7; }
+
+/* ─── TESTIMONIAL (bg #2C3E50) ─── */
+.testimonial-wrap {
+  background: #2C3E50;
+  text-align: center;
+  padding: 60px 160px;
+}
+.testimonial-wrap img {
+  margin: 0 auto 20px;
+  max-width: 220px;
+}
+.testimonial-wrap h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #F5F5F3;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.testimonial-wrap p { color: #F5F5F3; font-size: 14px; opacity: .8; }
+
+/* ─── BRANDS (bg #E6E8EB) ─── */
+.brands-wrap { background: #E6E8EB; }
+.brands-wrap h2 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #2C3E50;
+  margin-bottom: 40px;
+}
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+.brands-grid img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
+
+/* ─── KEEP CREWS (50/50 split) ─── */
+.keep-crews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 460px;
+}
+.keep-crews-text {
+  background: #F5F5F3;
+  padding: 72px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.keep-crews-text h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #2C3E50;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 20px;
+}
+.keep-crews-text p {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2C3E50;
+  color: #F5F5F3;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  margin-top: 22px;
+  width: fit-content;
+  transition: background .2s;
+}
+.btn-dark:hover { background: #1a2a3a; color: #F5F5F3; }
+.btn-dark::after { content: '→'; font-size: 18px; }
+.keep-crews-img {
+  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Construction-Hi-Vis-Fall-1200x800-1.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 460px;
+}
+
+/* ─── TOP SELLERS (bg #E6E8EB) ─── */
+.sellers-wrap { background: #E6E8EB; }
+.sellers-wrap .section-hdr { text-align: center; margin-bottom: 36px; }
+.sellers-wrap .section-hdr h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2C3E50;
+  margin-bottom: 8px;
+}
+.sellers-wrap .section-hdr p { color: #555; font-size: 15px; }
+.sellers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.seller-card { background: transparent; }
+.seller-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.seller-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 8px;
+}
+.seller-card p { font-size: 13px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+.btn-seller {
+  display: inline-block;
+  background: #2C3E50;
+  color: #F5F5F3;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 3px;
+  transition: background .2s;
+}
+.btn-seller:hover { background: #1a2a3a; color: #F5F5F3; }
+
+/* ─── ONE SOURCE (50/50 split, bg #F5F5F3) ─── */
+.one-source {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 460px;
+  background: #F5F5F3;
+}
+.one-source-img {
+  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Utility-Night-Safety-Apparel-Hi-Vis-1500.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 460px;
+}
+.one-source-text {
+  padding: 72px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #F5F5F3;
+}
+.one-source-text h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2C3E50;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 18px;
+}
+.one-source-text p { color: #444; font-size: 15px; margin-bottom: 6px; line-height: 1.7; }
+
+/* ─── FAQ (bg #E6E8EB) ─── */
+.faq-wrap { background: #E6E8EB; }
+.faq-wrap h2 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #2C3E50;
+  margin-bottom: 40px;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 40px;
+}
+.faq-item h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #5a768a;
+  margin-bottom: 8px;
+}
+.faq-item p { font-size: 14px; color: #444; line-height: 1.7; }
+.faq-item a { color: #84cc16; font-weight: 600; }
+.faq-item a:hover { text-decoration: underline; }
+
+/* ─── CLAIM STORE (50/50 split, bg #2C3E50) ─── */
+.claim-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 460px;
+  background: #2C3E50;
+}
+.claim-text {
+  padding: 72px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #2C3E50;
+}
+.claim-text h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #F5F5F3;
+  margin-bottom: 18px;
+}
+.claim-text p { color: #F5F5F3; font-size: 15px; opacity: .9; margin-bottom: 8px; line-height: 1.7; }
+.claim-text .login-link { color: #84cc16; font-weight: 600; }
+.claim-text .login-link:hover { text-decoration: underline; }
+.btn-white {
+  display: inline-block;
+  background: #F5F5F3;
+  color: #2C3E50;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 3px;
+  margin-top: 22px;
+  width: fit-content;
+  transition: background .2s;
+}
+.btn-white:hover { background: #e0e0e0; }
+.claim-img {
+  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/Direct-Store-Procurement-Shopper-Man.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 460px;
+}
+
+/* ─── TOP RATED PRODUCTS ─── */
+.top-rated-wrap { background: #F5F5F3; border-top: 1px solid #ddd; }
+.top-rated-wrap h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 24px;
+}
+.top-rated-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.top-rated-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #2C3E50;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color .18s;
+}
+.top-rated-card:hover { color: #84cc16; }
+.top-rated-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #111820;
+  color: rgba(255,255,255,.7);
+  padding: 56px 80px 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand img {
+  height: 38px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 18px;
+}
+.footer-brand p { font-size: 13px; line-height: 1.7; margin-bottom: 6px; }
+.footer-brand address { font-style: normal; font-size: 13px; margin-bottom: 18px; line-height: 1.6; }
+.social { display: flex; gap: 8px; margin-top: 4px; }
+.social a {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: rgba(255,255,255,.65);
+  font-weight: 700;
+  transition: border-color .2s, color .2s;
+}
+.social a:hover { border-color: #84cc16; color: #84cc16; }
+
+.footer-col h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 9px; }
+.footer-col ul li a { font-size: 13px; color: rgba(255,255,255,.6); transition: color .2s; }
+.footer-col ul li a:hover { color: #84cc16; }
+
+.footer-search input {
+  width: 100%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  padding: 9px 12px;
+  border-radius: 3px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  outline: none;
+}
+.footer-search input::placeholder { color: rgba(255,255,255,.35); }
+.footer-search button {
+  width: 100%;
+  background: #2C3E50;
+  color: #F5F5F3;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s;
+}
+.footer-search button:hover { background: #1a2a3a; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .rri-section, .rri-section-sm { padding: 48px 40px; }
+  .features-grid { gap: 28px; }
+  .brands-grid { grid-template-columns: repeat(3, 1fr); }
+  .sellers-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .top-rated-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hero, .keep-crews, .one-source, .claim-wrap { grid-template-columns: 1fr; }
+  .hero-img, .keep-crews-img, .one-source-img, .claim-img { min-height: 280px; }
+  .testimonial-wrap { padding: 48px 32px; }
+  .features-grid, .faq-grid { grid-template-columns: 1fr; }
+  .brands-grid { grid-template-columns: repeat(2, 1fr); }
+  .sellers-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .main-nav .nav-links { display: none; }
+  .top-rated-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="tel:8002345611">(800) 234-5611</a>
+  <a href="mailto:service@rrind.com">service@rrind.com</a>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a href="https://danielr685.sg-host.com/" class="logo">
+    <img src="images/RRI-Black-x45.png" alt="R &amp; R Industries">
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://danielr685.sg-host.com/">RRI Home</a></li>
+    <li>
+      <a href="https://danielr685.sg-host.com/shop-2/">Browse ▾</a>
+      <ul class="dropdown">
+        <li><a href="https://danielr685.sg-host.com/product-category/corporate-apparel/">Browse Corporate Apparel</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/promos/">Browse Promos</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/safety-apparel/">Browse Safety Apparel</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/workwear/">Browse Workwear</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/accessories/">Browse Accessories</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/bags/">Browse Bags</a></li>
+        <li><a href="https://danielr685.sg-host.com/product-category/headwear/">Browse Headwear</a></li>
+      </ul>
+    </li>
+    <li><a href="https://danielr685.sg-host.com/corporate-apparel/">Corporate Apparel</a></li>
+    <li><a href="https://danielr685.sg-host.com/promos/">Branded Promos</a></li>
+    <li><a href="https://danielr685.sg-host.com/safety-apparel/">Safety Apparel</a></li>
+    <li>
+      <a href="https://danielr685.sg-host.com/industries/">Industries ▾</a>
+      <ul class="dropdown">
+        <li><a href="https://danielr685.sg-host.com/industries/aviation/">Aviation</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/construction/">Construction</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/energy-utilities/">Energy and Utilities</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/food-beverage/">Food and Beverage</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/government/">Government</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/hospitality/">Hospitality and Hotels</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/landscaping/">Landscaping</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/logistics/">Logistics</a></li>
+        <li><a href="https://danielr685.sg-host.com/?page_id=6065">Oil Gas and Mining</a></li>
+        <li><a href="https://danielr685.sg-host.com/?page_id=6068">Rail and Transit</a></li>
+        <li><a href="https://danielr685.sg-host.com/industries/waste-management/">Waste Management</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://danielr685.sg-host.com/resources/">Resources ▾</a>
+      <ul class="dropdown">
+        <li><a href="https://danielr685.sg-host.com/resources/about-us/">About Us</a></li>
+        <li><a href="https://danielr685.sg-host.com/blog/">News</a></li>
+        <li><a href="https://danielr685.sg-host.com/resources/compliance-standards/">Compliance and Standards</a></li>
+        <li><a href="https://danielr685.sg-host.com/resources/decoration/">Decoration Services</a></li>
+        <li><a href="https://danielr685.sg-host.com/?page_id=6121">Size Charts</a></li>
+      </ul>
+    </li>
+    <li><a href="https://danielr685.sg-host.com/direct-store/">Direct Store</a></li>
+    <li><a href="https://danielr685.sg-host.com/contact-rri/">Contact RRI</a></li>
+    <li><a href="https://danielr685.sg-host.com/terms-and-conditions/">Terms and Conditions</a></li>
+    <li class="nav-cta"><a href="https://www.rri-direct.com/store/signup">Claim Your Store</a></li>
+  </ul>
+</nav>
+
+<!-- HERO: 50/50 — photo left, text right -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-text">
+    <h1>Your Crew Gear,<br>Handled the Right Way</h1>
+    <p>Managing gear across teams gets messy fast. Different orders. Different locations. Different results.</p>
+    <p>RRI brings structure to the process.</p>
+    <p>We set clear standards for what can be ordered, how it's ordered, and how it's delivered so everything stays consistent.</p>
+    <p>Pre-approved gear. Controlled ordering. Delivered on schedule.</p>
+    <h2>One Source,<br>Consistent Results</h2>
+    <p class="hero-sub">Every order follows the same rules.<br>Every reorder matches the last.<br>Your branding stays consistent, every time.</p>
+    <p class="hero-sub">No surprises. No off-program products.</p>
+    <p class="hero-sub">Just gear that shows up right.</p>
+    <a href="https://www.rri-direct.com/store/signup" class="btn-main">Claim Your Store</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features-wrap">
+  <div class="rri-section">
+    <h2><strong>A Direct Store Built On Your Rules</strong></h2>
+    <div class="features-grid">
+      <div class="feature">
+        <img src="images/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Ordering">
+        <h3><strong>Ordering</strong></h3>
+        <p>Gear, branding, and delivery managed in one place. No vendor switching. No piecing orders together. Orders come through right. Reorders are simple.</p>
+      </div>
+      <div class="feature">
+        <img src="images/TEAM-3-check-boxes-250x250-STEEL-BLUE-100x100.png" alt="Management">
+        <h3><strong>Management</strong></h3>
+        <p>Products in your store follow your set standards. One place to order across teams and locations. No mix of products. No off-brand items. Orders follow the same setup.</p>
+      </div>
+      <div class="feature">
+        <img src="images/HUMAN-QC-3-checkboxes-process-250x250-STEEL-BLUE-100x100.png" alt="Results">
+        <h3><strong>Results</strong></h3>
+        <p>Orders arrive on time. No surprises at delivery. Branding looks the way it should. Gear matches what was ordered. Crews have what they need.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-wrap">
+  <img src="images/RRI-5-STAR-NEW-1.png" alt="5 Stars">
+  <h3>"I've been a customer for 10+ years.&nbsp; The variety, quality, and service is what sets them apart from all the others."</h3>
+  <p>Dean B</p>
+  <p>Bernal Construction Safety Services</p>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-wrap">
+  <div class="rri-section">
+    <h2><strong>RRI chosen by national and global brands</strong></h2>
+    <div class="brands-grid">
+      <img src="images/SLATE-Logo-Logistics-Penske-300x300-300hires-150x150.png" alt="Penske">
+      <img src="images/SLATE-Logo-Food-Bev-Sysco-300x300-300hires-150x150.png" alt="Sysco">
+      <img src="images/SLATE-Logo-Food-Bev-Coca-Cola-300x300-300hires-150x150.png" alt="Coca-Cola">
+      <img src="images/SLATE-Logo-Construction-Whiting-Turner-300x300-300hires-150x150.png" alt="Whiting-Turner">
+      <img src="images/SLATE-Logo-Signature-Aviation-300x300-01-150x150.png" alt="Signature Aviation">
+      <img src="images/SLATE-Logo-Construction-Hensel-Phelps-300x300-300hires-150x150.png" alt="Hensel Phelps">
+    </div>
+  </div>
+</div>
+
+<!-- KEEP CREWS MOVING: text left, photo right -->
+<section class="keep-crews">
+  <div class="keep-crews-text rri-section">
+    <h2><strong>Keep Crews Moving</strong></h2>
+    <p>Crews work across jobs, roles, and locations. Gear needs to show up the same way every time.</p>
+    <p>When orders go sideways, it snowballs fast. Wrong gear. Wrong logos. Costs climb.</p>
+    <p>Your Direct Store offers simple, controlled ordering. Deliveries are reliable and accurate. The right gear shows up, ready for the job.</p>
+    <a href="https://www.rri-direct.com/store/signup" class="btn-dark">Claim Your Store</a>
+  </div>
+  <div class="keep-crews-img"></div>
+</section>
+
+<!-- TOP SELLERS -->
+<div class="sellers-wrap">
+  <div class="rri-section">
+    <div class="section-hdr">
+      <h2><strong>Top Sellers</strong></h2>
+      <p>Stay ahead of crew needs with ready-to-go seasonal gear.</p>
+    </div>
+    <div class="sellers-grid">
+      <div class="seller-card">
+        <img src="images/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Hi-Vis Vests">
+        <h3><strong>Hi-Vis Vests</strong></h3>
+        <p>Hi vis gear for breathable, lightweight comfort and high visibility in low light conditions.</p>
+        <a href="https://danielr685.sg-host.com/product-category/safety-apparel/safety-vests/" class="btn-seller">Browse Vests</a>
+      </div>
+      <div class="seller-card">
+        <img src="images/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis Shirts">
+        <h3><strong>Hi Vis Shirts</strong></h3>
+        <p>Short sleeve, long sleeve, and t-shirts. With or without reflective access helps keep crews visible on the hottest days.</p>
+        <a href="https://danielr685.sg-host.com/product-category/safety-apparel/safety-shirts/" class="btn-seller">Browse Shirts</a>
+      </div>
+      <div class="seller-card">
+        <img src="images/RRI-Corporate-Apparel-Nike-Dri-FIT-Vapor-Polo-NKDC2108-NKDC2108-296-Midnight-navy-Front.png" alt="Polos">
+        <h3><strong>Polos</strong></h3>
+        <p>Polos ready for decoration in a variety of makes and colors.</p>
+        <a href="https://danielr685.sg-host.com/product-category/corporate-apparel/polos/" class="btn-seller">Browse Polos</a>
+      </div>
+      <div class="seller-card">
+        <img src="images/RRI-C995-River-Blue-Navy-SIDE.png" alt="Hats">
+        <h3><strong>Hats</strong></h3>
+        <p>Beanies, hats, caps, visors, wide-brimmed hats, and more.</p>
+        <a href="https://danielr685.sg-host.com/product-category/headwear/" class="btn-seller">Browse Headwear</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ONE SOURCE: photo left, text right -->
+<section class="one-source">
+  <div class="one-source-img"></div>
+  <div class="one-source-text rri-section">
+    <h2><strong>One Source, Consistent Results</strong></h2>
+    <p>All gear follows defined standards. All orders follow the same structure. No vendor variation. No off program products. Reorders match previous orders. Branding stays consistent.</p>
+    <a href="https://www.rri-direct.com/store/signup" class="btn-dark">Claim Your Store</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <div class="rri-section">
+    <h2><strong>Common questions, straight answers</strong></h2>
+    <div class="faq-grid">
+      <div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>How does the my Direct Store work?</strong></h3>
+          <p>We build a custom store with your approved products and branding. Your team orders from it, and we handle the rest. <a href="https://www.rri-direct.com/store/signup">Claim your Direct Store now.</a></p>
+        </div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>Can we control what employees order?</strong></h3>
+          <p>Yes. Products, branding, and purchasing rules are all pre-set and controlled by you.</p>
+        </div>
+        <div class="faq-item">
+          <h3><strong>What if we need something not in the store?</strong></h3>
+          <p>We can source and add new items quickly without disrupting your program.</p>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>Do you stock inventory?</strong></h3>
+          <p>Yes. Core safety gear is stocked and ready to move when you need it.</p>
+        </div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>How do you handle branding?</strong></h3>
+          <p>Our in-house team manages logo placement and consistency across every item.</p>
+        </div>
+        <div class="faq-item">
+          <h3><strong>Are your products ANSI compliant?</strong></h3>
+          <p>Yes. We offer a full range of ANSI-compliant safety apparel.</p>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>Can we order mixed sizes and quantities?</strong></h3>
+          <p>Yes. Order what you need with low minimums on most items.</p>
+        </div>
+        <div class="faq-item" style="margin-bottom:28px;">
+          <h3><strong>How fast are orders fulfilled?</strong></h3>
+          <p>Turnaround times are fast and consistent, depending on product and dec
