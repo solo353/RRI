@@ -323,7 +323,7 @@ ul { list-style: none; }
 }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-img {
-  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Construction-Street-Orange-SMALL.jpg');
+  background-image: url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=1600&q=80&fit=crop');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -735,7 +735,7 @@ ul { list-style: none; }
   min-height: 400px;
 }
 .one-source-img {
-  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Construction-Street-Orange-SMALL.jpg');
+  background-image: url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=1600&q=80&fit=crop');
   background-size: cover;
   background-position: center;
 }
