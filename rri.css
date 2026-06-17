@@ -138,7 +138,26 @@ ul { list-style: none; }
   transition: background .12s;
 }
 .mega-section a:hover { background: var(--bg-gray); color: var(--green); }
+.mega-section a:hover .nav-icon { background: var(--green); color: #fff; }
 .mega-section a span { font-size: 18px; }
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: #f0f2f5;
+  color: var(--navy);
+  flex-shrink: 0;
+  transition: background .12s, color .12s;
+}
+.nav-icon svg { width: 16px; height: 16px; }
+.nav-icon-sub {
+  background: transparent;
+  color: var(--muted);
+}
+.mega-section a:hover .nav-icon-sub { background: var(--green); color: #fff; }
 .mega-browse {
   grid-column: 1 / -1;
   border-top: 1px solid var(--border);
