@@ -3,18 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safety Apparel — Hi-Vis Vests, Shirts &amp; Outerwear | RRI</title>
+<title>Safety Apparel — Hi-Vis Vests, Shirts &amp; Outerwear | R &amp; R Industries</title>
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="ANSI-certified safety apparel for crews. Hi-vis vests, shirts, outerwear, and rainwear. Decorated in-house and delivered on time.">
+<meta name="description" content="ANSI-certified hi-vis safety apparel for crews. Vests, shirts, jackets, and more — decorated in-house and delivered on time.">
 <link rel="stylesheet" href="../rri.css">
+<style>
+/* ── PAGE LAYOUT ── */
+.catalog-wrap {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 40px 72px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar { position: sticky; top: 84px; align-self: start; }
+.sidebar-section { border-bottom: 1px solid #e8ecf0; padding-bottom: 20px; margin-bottom: 20px; }
+.sidebar-section:last-child { border-bottom: none; }
+.sidebar-section h4 {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: #64748b; margin-bottom: 12px;
+}
+.filter-list { list-style: none; padding: 0; margin: 0; }
+.filter-list li { margin-bottom: 6px; }
+.filter-list li label {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13.5px; color: #374151; cursor: pointer;
+  padding: 3px 0;
+}
+.filter-list li label:hover { color: #84cc16; }
+.filter-list li label input[type=checkbox] { accent-color: #84cc16; width: 15px; height: 15px; flex-shrink: 0; }
+.filter-list li label .count { color: #94a3b8; font-size: 12px; margin-left: auto; }
+.filter-color-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.color-swatch {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid #e2e8f0; cursor: pointer;
+  transition: transform .15s, border-color .15s;
+  position: relative;
+}
+.color-swatch:hover, .color-swatch.active { transform: scale(1.15); border-color: #84cc16; }
+.color-swatch[title="Lime"] { background: #b5e000; }
+.color-swatch[title="Orange"] { background: #ff6600; }
+.color-swatch[title="Yellow"] { background: #fde047; }
+.color-swatch[title="Navy"] { background: #1e3a5f; }
+.color-swatch[title="Black"] { background: #111; }
+.color-swatch[title="Grey"] { background: #9ca3af; }
+.sidebar-clear { font-size: 12px; color: #84cc16; cursor: pointer; font-weight: 600; margin-top: 4px; display: inline-block; }
+.sidebar-clear:hover { text-decoration: underline; }
+
+/* ── SORT BAR ── */
+.sort-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0 18px;
+  border-bottom: 1px solid #e8ecf0;
+  margin-bottom: 24px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sort-bar-left { font-size: 13.5px; color: #64748b; }
+.sort-bar-left strong { color: #0d1b2a; }
+.sort-controls { display: flex; align-items: center; gap: 12px; }
+.sort-select {
+  padding: 7px 32px 7px 12px;
+  font-size: 13px; font-family: inherit;
+  border: 1.5px solid #e2e8f0; border-radius: 8px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center;
+  appearance: none; color: #374151; cursor: pointer;
+}
+.sort-select:focus { outline: none; border-color: #84cc16; }
+.view-toggle { display: flex; gap: 4px; }
+.view-btn {
+  width: 34px; height: 34px; border: 1.5px solid #e2e8f0;
+  background: #fff; border-radius: 7px; display: flex;
+  align-items: center; justify-content: center; cursor: pointer;
+  color: #94a3b8; transition: all .15s;
+}
+.view-btn.active, .view-btn:hover { background: #0d1b2a; border-color: #0d1b2a; color: #fff; }
+
+/* ── PRODUCT GRID ── */
+.product-grid-main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.prod-card {
+  background: #fff;
+  border: 1.5px solid #e8ecf0;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .18s, box-shadow .18s, transform .18s;
+  cursor: pointer;
+  position: relative;
+}
+.prod-card:hover {
+  border-color: #84cc16;
+  box-shadow: 0 8px 28px rgba(132,204,22,.14);
+  transform: translateY(-3px);
+}
+.prod-img {
+  aspect-ratio: 1 / 1;
+  background: #f4f6f8;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.prod-img img {
+  width: 100%; height: 100%; object-fit: contain;
+  padding: 16px;
+  transition: transform .3s;
+}
+.prod-card:hover .prod-img img { transform: scale(1.04); }
+.ansi-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: #0d1b2a; color: #84cc16;
+  font-size: 10px; font-weight: 700;
+  padding: 3px 7px; border-radius: 5px;
+  letter-spacing: .05em;
+}
+.prod-body { padding: 14px 16px 18px; }
+.prod-style { font-size: 11px; color: #94a3b8; font-weight: 600; margin-bottom: 4px; letter-spacing: .04em; }
+.prod-name { font-size: 14px; font-weight: 700; color: #0d1b2a; line-height: 1.35; margin-bottom: 10px; }
+.prod-swatches { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.prod-swatch {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid #e2e8f0;
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+}
+.prod-swatch:hover { transform: scale(1.2); border-color: #84cc16; }
+.prod-swatch.lime { background: #b5e000; }
+.prod-swatch.orange { background: #ff6600; }
+.prod-swatch.yellow { background: #fde047; }
+.prod-swatch.navy { background: #1e3a5f; }
+.prod-swatch.black { background: #111; }
+.prod-swatch.grey { background: #9ca3af; }
+.prod-swatch.more {
+  background: #f1f5f9; color: #64748b;
+  font-size: 10px; font-weight: 700;
+  width: auto; padding: 0 7px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+}
+.prod-cta {
+  display: block; width: 100%;
+  background: #0d1b2a; color: #fff;
+  border: none; border-radius: 8px;
+  padding: 10px 0; font-size: 13px; font-weight: 700;
+  font-family: inherit; cursor: pointer; text-align: center;
+  transition: background .15s;
+  text-decoration: none;
+}
+.prod-cta:hover { background: #84cc16; }
+
+/* ── ACTIVE FILTERS ── */
+.active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.filter-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: #f1f5f9; border-radius: 20px;
+  padding: 5px 12px; font-size: 12.5px; font-weight: 600;
+  color: #374151; cursor: pointer; border: 1.5px solid #e2e8f0;
+  transition: all .15s;
+}
+.filter-chip:hover { border-color: #ef4444; color: #ef4444; }
+.filter-chip span { color: #94a3b8; font-size: 13px; line-height: 1; }
+
+/* ── ANSI INFO BANNER ── */
+.ansi-banner {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1a2f45 100%);
+  border-radius: 14px; padding: 24px 28px;
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 28px; color: #fff;
+}
+.ansi-banner-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: rgba(132,204,22,.15); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #84cc16;
+}
+.ansi-banner h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.ansi-banner p { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; margin: 0; }
+
+/* ── PAGE HERO ── */
+.cat-page-hero {
+  background: #0d1b2a;
+  padding: 36px 40px;
+}
+.cat-page-hero .breadcrumb-nav { font-size: 12.5px; color: rgba(255,255,255,.45); margin-bottom: 12px; }
+.cat-page-hero .breadcrumb-nav a { color: rgba(255,255,255,.45); }
+.cat-page-hero .breadcrumb-nav a:hover { color: #84cc16; }
+.cat-page-hero .breadcrumb-nav span { color: rgba(255,255,255,.7); }
+.cat-page-hero h1 { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+.cat-page-hero p { font-size: 14px; color: rgba(255,255,255,.6); max-width: 540px; line-height: 1.6; }
+.cat-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.cat-pill {
+  padding: 7px 16px; border-radius: 20px;
+  font-size: 12.5px; font-weight: 600;
+  background: rgba(255,255,255,.1); color: rgba(255,255,255,.8);
+  border: 1.5px solid rgba(255,255,255,.15);
+  cursor: pointer; transition: all .15s; text-decoration: none;
+}
+.cat-pill:hover, .cat-pill.active {
+  background: #84cc16; color: #fff; border-color: #84cc16;
+}
+
+/* ── LOAD MORE ── */
+.load-more-wrap { text-align: center; margin-top: 36px; }
+.btn-load-more {
+  padding: 13px 40px; border-radius: 10px;
+  border: 2px solid #0d1b2a; background: #fff;
+  font-size: 14px; font-weight: 700; color: #0d1b2a;
+  cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.btn-load-more:hover { background: #0d1b2a; color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .catalog-wrap { grid-template-columns: 200px 1fr; padding: 24px 24px 60px; gap: 24px; }
+  .product-grid-main { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .catalog-wrap { grid-template-columns: 1fr; padding: 20px 16px 60px; }
+  .sidebar { position: static; display: none; }
+  .sidebar.open { display: block; }
+  .cat-page-hero { padding: 24px 20px; }
+  .cat-page-hero h1 { font-size: 24px; }
+  .product-grid-main { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .filter-toggle-btn { display: flex; }
+}
+@media (max-width: 480px) {
+  .product-grid-main { grid-template-columns: 1fr; }
+}
+
+/* Mobile filter toggle */
+.filter-toggle-btn {
+  display: none;
+  align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 9px;
+  border: 1.5px solid #e2e8f0; background: #fff;
+  font-size: 13px; font-weight: 600; color: #0d1b2a;
+  cursor: pointer; font-family: inherit; margin-bottom: 16px;
+}
+</style>
 </head>
 <body>
 
 <div class="top-bar">
   <a href="tel:8002345611">(800) 234-5611</a>
   <a href="mailto:service@rrind.com">service@rrind.com</a>
-  <span>Mon–Fri 7:00AM – 4:30PM PDT</span>
+  <span>Mon&ndash;Fri 7:00AM &ndash; 4:30PM PDT</span>
 </div>
+
 <nav class="main-nav">
   <a href="../index.html" class="logo"><img src="/Photos/rri-logo-black.png" alt="R &amp; R Industries"></a>
   <ul class="nav-links">
@@ -27,18 +267,16 @@
           <a href="/safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4l3 2v10H4V4zM16 4l-3 2v10h3V4zM7 6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Hi-Vis Vests</a>
           <a href="/safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hi-Vis Shirts</a>
           <a href="/safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8l2-4h2l1 2h4l1-2h2l2 4-2 1v7H5V9L3 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Outerwear &amp; Rainwear</a>
-          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5.6 5.6l1.4 1.4M13 13l1.4 1.4M5.6 14.4L7 13M13 7l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
+          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
         </div>
         <div class="mega-section">
           <h5>Corporate &amp; Promo</h5>
           <a href="../corporate-apparel/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 10h2M9 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Corporate Apparel</a>
-          <a href="/corporate-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3L3 6l2 1.5V16h10V7.5L17 6l-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c.5 1 1 1.5 2 1.5S11.5 4 12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Polos &amp; Shirts</a>
-          <a href="/corporate-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8l2-4h2l1 2h4l1-2h2l2 4-2 1v7H5V9L3 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Jackets &amp; Outerwear</a>
-          <a href="../promos/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/></svg></span> Branded Promos</a>
-          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12h16v1a2 2 0 01-2 2H4a2 2 0 01-2-2v-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 6V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Headwear</a>
+          <a href="../promos/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v6M7 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Branded Promos</a>
+          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12h16v1a2 2 0 01-2 2H4a2 2 0 01-2-2v-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span> Headwear</a>
           <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="8" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/></svg></span> Bags</a>
         </div>
-        <div class="mega-browse"><a href="/product/">Browse All Products →</a></div>
+        <div class="mega-browse"><a href="/product/">Browse All Products &rarr;</a></div>
       </div>
     </li>
     <li>
@@ -50,9 +288,7 @@
         <li><a href="/industries/">Food &amp; Beverage</a></li>
         <li><a href="/industries/">Government</a></li>
         <li><a href="/industries/">Hospitality</a></li>
-        <li><a href="/industries/">Landscaping</a></li>
         <li><a href="/industries/">Logistics</a></li>
-        <li><a href="/industries/">Waste Management</a></li>
       </ul>
     </li>
     <li><a href="../direct-store/">Direct Store</a></li>
@@ -63,7 +299,6 @@
         <li><a href="/resources/">Decoration Services</a></li>
         <li><a href="/resources/">ANSI Compliance</a></li>
         <li><a href="/resources/">Size Charts</a></li>
-        <li><a href="/resources/">News</a></li>
       </ul>
     </li>
     <li><a href="../contact-rri/">Contact</a></li>
@@ -72,156 +307,325 @@
   <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="breadcrumb">
-  <a href="../index.html">Home</a><span class="sep">›</span>
-  <span class="current">Safety Apparel</span>
-</div>
-
-<div class="page-hero">
-  <div class="page-hero-inner">
-    <span class="section-label">ANSI 107-2020 Certified</span>
-    <h1>Safety Apparel Built<br>for <em>Real Work</em></h1>
-    <p>Hi-vis vests, shirts, outerwear, and rainwear — decorated in-house and delivered to spec. Gear that keeps crews visible, protected, and moving in real conditions.</p>
-    <a href="https://www.rri-direct.com/store/signup" class="btn-main">Claim Your Direct Store</a>
+<!-- CATEGORY HERO -->
+<div class="cat-page-hero">
+  <div class="breadcrumb-nav">
+    <a href="../index.html">Home</a> &rsaquo;
+    <a href="../product/">Products</a> &rsaquo;
+    <span>Safety Apparel</span>
+  </div>
+  <h1>Safety Apparel</h1>
+  <p>ANSI-certified hi-vis vests, shirts, jackets &amp; more — decorated in-house, delivered on time.</p>
+  <div class="cat-pills">
+    <a href="#" class="cat-pill active" data-cat="all">All Safety Apparel</a>
+    <a href="#" class="cat-pill" data-cat="vests">Hi-Vis Vests</a>
+    <a href="#" class="cat-pill" data-cat="shirts">Hi-Vis Shirts</a>
+    <a href="#" class="cat-pill" data-cat="outerwear">Outerwear</a>
+    <a href="#" class="cat-pill" data-cat="headwear">Headwear</a>
+    <a href="#" class="cat-pill" data-cat="accessories">Accessories</a>
   </div>
 </div>
 
-<div class="testimonial-wrap">
-  <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-5-STAR-NEW-1.png" alt="5 Stars">
-  <blockquote>"I've been a customer for 10+ years. The variety, quality, and service is what sets them apart from all the others."</blockquote>
-  <cite><strong>Dean B</strong>Bernal Construction Safety Services</cite>
-</div>
+<!-- MAIN CONTENT -->
+<div class="catalog-wrap">
 
-<section class="features-wrap">
-  <div class="rri-section">
-    <div class="fade-up">
-      <span class="section-label">Shop by Category</span>
-      <h2 class="section-title">Safety Apparel</h2>
-      <p class="section-sub">Find the gear that fits your job and environment. All available for in-house decoration.</p>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-section">
+      <h4>Category</h4>
+      <ul class="filter-list">
+        <li><label><input type="checkbox" checked> Hi-Vis Vests <span class="count">12</span></label></li>
+        <li><label><input type="checkbox" checked> Hi-Vis Shirts <span class="count">8</span></label></li>
+        <li><label><input type="checkbox"> Outerwear &amp; Jackets <span class="count">6</span></label></li>
+        <li><label><input type="checkbox"> Sweatshirts &amp; Hoodies <span class="count">5</span></label></li>
+        <li><label><input type="checkbox"> Headwear <span class="count">4</span></label></li>
+        <li><label><input type="checkbox"> Accessories <span class="count">7</span></label></li>
+      </ul>
     </div>
-    <div class="product-grid">
-      <div class="product-card fade-up fade-up-d1">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Hi-Vis Vests">
-        </div>
-        <div class="product-card-body">
-          <h3>Hi-Vis Vests</h3>
-          <p>Lightweight, ANSI-certified vests for active jobsites and warm conditions. Class II and III available.</p>
-          <a href="/safety-apparel/" class="btn-seller">Browse Vests</a>
-        </div>
-      </div>
-      <div class="product-card fade-up fade-up-d2">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis Shirts">
-        </div>
-        <div class="product-card-body">
-          <h3>Hi-Vis Shirts</h3>
-          <p>Short sleeve, long sleeve, and tees with or without reflective tape. Keeps crews visible on the hottest days.</p>
-          <a href="/safety-apparel/" class="btn-seller">Browse Shirts</a>
-        </div>
-      </div>
-      <div class="product-card fade-up fade-up-d3">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Core-Soft-Shell-Jacket-J317-J317-296-Battleship-grey-Front_1.png" alt="Outerwear">
-        </div>
-        <div class="product-card-body">
-          <h3>Outerwear &amp; Rainwear</h3>
-          <p>ANSI-certified jackets, vests, and rainwear for cold, wet, and variable conditions.</p>
-          <a href="/safety-apparel/" class="btn-seller">Browse Outerwear</a>
-        </div>
-      </div>
-      <div class="product-card fade-up fade-up-d1">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-C995-River-Blue-Navy-SIDE.png" alt="Headwear">
-        </div>
-        <div class="product-card-body">
-          <h3>Headwear</h3>
-          <p>Hi-vis caps, beanies, and hard hat accessories that keep crews compliant and protected.</p>
-          <a href="/product/" class="btn-seller">Browse Headwear</a>
-        </div>
-      </div>
-      <div class="product-card fade-up fade-up-d2">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Sweatshirts">
-        </div>
-        <div class="product-card-body">
-          <h3>Hi-Vis Sweatshirts</h3>
-          <p>Reflective hoodies and crewnecks for cool-weather visibility on jobsites and roadways.</p>
-          <a href="https://danielr685.sg-host.com/product-category/safety-apparel/safety-sweatshirts/" class="btn-seller">Browse Sweatshirts</a>
-        </div>
-      </div>
-      <div class="product-card fade-up fade-up-d3">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/SLATE-Logo-Construction-Whiting-Turner-300x300-300hires-150x150.png" alt="Accessories">
-        </div>
-        <div class="product-card-body">
-          <h3>Safety Accessories</h3>
-          <p>Gloves, back support, and additional PPE to complete crew safety programs.</p>
-          <a href="/product/" class="btn-seller">Browse Accessories</a>
-        </div>
+
+    <div class="sidebar-section">
+      <h4>ANSI Class</h4>
+      <ul class="filter-list">
+        <li><label><input type="checkbox"> Class 1 <span class="count">4</span></label></li>
+        <li><label><input type="checkbox" checked> Class 2 <span class="count">18</span></label></li>
+        <li><label><input type="checkbox" checked> Class 3 <span class="count">10</span></label></li>
+        <li><label><input type="checkbox"> Type R <span class="count">8</span></label></li>
+        <li><label><input type="checkbox"> Type P <span class="count">5</span></label></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Color</h4>
+      <div class="filter-color-row">
+        <div class="color-swatch active" title="Lime"></div>
+        <div class="color-swatch" title="Orange"></div>
+        <div class="color-swatch" title="Yellow"></div>
+        <div class="color-swatch" title="Navy"></div>
+        <div class="color-swatch" title="Black"></div>
+        <div class="color-swatch" title="Grey"></div>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="faq-wrap">
-  <div class="rri-section">
-    <h2 class="section-title fade-up" style="text-align:center;margin-bottom:0;">Safety Apparel Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-toggle">What ANSI classes do your safety vests cover? <span class="faq-chevron">▾</span></button>
-        <div class="faq-body"><p>We offer Class I, II, and III ANSI 107-2020 certified safety apparel for various visibility requirements and work environments.</p></div>
+    <div class="sidebar-section">
+      <h4>Brand</h4>
+      <ul class="filter-list">
+        <li><label><input type="checkbox" checked> Radians <span class="count">14</span></label></li>
+        <li><label><input type="checkbox"> Kishigo <span class="count">9</span></label></li>
+        <li><label><input type="checkbox"> ML Kishigo <span class="count">6</span></label></li>
+        <li><label><input type="checkbox"> OccuNomix <span class="count">5</span></label></li>
+        <li><label><input type="checkbox"> Port Authority <span class="count">4</span></label></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Size</h4>
+      <ul class="filter-list">
+        <li><label><input type="checkbox"> S/M</label></li>
+        <li><label><input type="checkbox"> L/XL</label></li>
+        <li><label><input type="checkbox"> 2XL</label></li>
+        <li><label><input type="checkbox"> 3XL</label></li>
+        <li><label><input type="checkbox"> 4XL–5XL</label></li>
+      </ul>
+    </div>
+
+    <span class="sidebar-clear" onclick="clearFilters()">&#10005; Clear All Filters</span>
+
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="catalog-main">
+
+    <!-- Mobile filter toggle -->
+    <button class="filter-toggle-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+      Filters &amp; Sort
+    </button>
+
+    <!-- Active filter chips -->
+    <div class="active-filters" id="activeFilters">
+      <div class="filter-chip">Class 2 <span>&#10005;</span></div>
+      <div class="filter-chip">Class 3 <span>&#10005;</span></div>
+      <div class="filter-chip">Lime <span>&#10005;</span></div>
+      <div class="filter-chip">Radians <span>&#10005;</span></div>
+    </div>
+
+    <!-- ANSI Banner -->
+    <div class="ansi-banner">
+      <div class="ansi-banner-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C18.25 22.15 22 17.25 22 12V7L12 2z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
-      <div class="faq-item">
-        <button class="faq-toggle">Can you add logos to safety apparel? <span class="faq-chevron">▾</span></button>
-        <div class="faq-body"><p>Yes. Our in-house decoration team handles embroidery, screen printing, and heat transfer on all safety apparel while maintaining ANSI compliance.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-toggle">Do you offer flame-resistant (FR) safety apparel? <span class="faq-chevron">▾</span></button>
-        <div class="faq-body"><p>Yes. FR-rated garments are available for energy, utilities, and other industries requiring arc flash and flame protection.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-toggle">Can we order mixed sizes and quantities? <span class="faq-chevron">▾</span></button>
-        <div class="faq-body"><p>Yes. We offer low minimums on most items so you can order what you need without excess inventory.</p></div>
+      <div>
+        <h3>All Products Are ANSI/ISEA 107 Compliant</h3>
+        <p>Every item in our safety apparel catalog meets or exceeds ANSI Class 2 &amp; Class 3 certification requirements for high-visibility workwear.</p>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="cta-band">
-  <h2>Claim Your Direct Store</h2>
-  <p>Pre-approved safety gear. Controlled ordering across teams. Consistent branding on every item.</p>
-  <a href="https://www.rri-direct.com/store/signup" class="btn-white">Get Started Free</a>
-</div>
-
-<div class="top-rated-wrap">
-  <div class="rri-section-sm">
-    <h2 class="section-title fade-up">Top Rated Products</h2>
-    <div class="top-rated-grid">
-      <a href="/product/" class="top-rated-card fade-up fade-up-d1">
-        <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Core-Soft-Shell-Jacket-J317-J317-296-Battleship-grey-Front_1.png" alt="Soft Shell Jacket">
-        <span>Port Authority Core Soft Shell Jacket J317-296</span>
-      </a>
-      <a href="/product/" class="top-rated-card fade-up fade-up-d2">
-        <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Value-Fleece-Jacket-F217-F217-296-Insignia-blue-Front_1.png" alt="Value Fleece Jacket">
-        <span>Port Authority Value Fleece Jacket F217-296</span>
-      </a>
-      <a href="/product/" class="top-rated-card fade-up fade-up-d3">
-        <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Sport-Tek-PosiCharge-Competitor-Tee-ST350-ST350-296-Neon-yellow-Front_1.png" alt="Competitor Tee">
-        <span>Sport-Tek PosiCharge Competitor Tee ST350-296</span>
-      </a>
+    <!-- Sort bar -->
+    <div class="sort-bar">
+      <div class="sort-bar-left">Showing <strong>42 products</strong> in Safety Apparel</div>
+      <div class="sort-controls">
+        <select class="sort-select" aria-label="Sort by">
+          <option>Best Match</option>
+          <option>Newest</option>
+          <option>Name A–Z</option>
+          <option>Name Z–A</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-btn active" aria-label="Grid view">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="0" width="7" height="7" rx="1"/><rect x="9" y="0" width="7" height="7" rx="1"/><rect x="0" y="9" width="7" height="7" rx="1"/><rect x="9" y="9" width="7" height="7" rx="1"/></svg>
+          </button>
+          <button class="view-btn" aria-label="List view">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="0" y="1" width="16" height="2.5" rx="1"/><rect x="0" y="6.5" width="16" height="2.5" rx="1"/><rect x="0" y="12" width="16" height="2.5" rx="1"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid-main" id="productGrid">
+
+      <!-- 1 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 2</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Surveyor's Vest V218" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style V218</div>
+          <div class="prod-name">Radians Surveyor's Safety Vest Class 2</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+            <div class="prod-swatch yellow" title="Yellow"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 2</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis T-Shirt T300" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style T300</div>
+          <div class="prod-name">Men's Hi-Vis Reflective Safety T-Shirt Class 2</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 3</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Safety-Apparel-S303-120-Lime-Front.png" alt="Hi-Vis Sweatshirt S303" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style S303</div>
+          <div class="prod-name">Hi-Vis Safety Sweatshirt Class 3 Type R</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 3</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Safety-Apparel-S501-120-Lime-Front.png" alt="Hi-Vis Safety Jacket S501" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style S501</div>
+          <div class="prod-name">Hi-Vis Safety Jacket Class 3 with Pockets</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+            <div class="prod-swatch navy" title="Navy"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 2</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Mesh Safety Vest" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style V212</div>
+          <div class="prod-name">Economy Mesh Hi-Vis Safety Vest Class 2</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+            <div class="prod-swatch yellow" title="Yellow"></div>
+            <div class="prod-swatch grey" title="Grey"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 2</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Long Sleeve Hi-Vis Shirt" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style T310</div>
+          <div class="prod-name">Long-Sleeve Hi-Vis Reflective Shirt Class 2</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 3</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Safety-Apparel-S501-120-Lime-Front.png" alt="Rain Jacket Class 3" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style RJ400</div>
+          <div class="prod-name">Hi-Vis Waterproof Rain Jacket Class 3</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-C995-River-Blue-Navy-SIDE.png" alt="Hi-Vis Cap C995" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style C995</div>
+          <div class="prod-name">Safety Cap with Reflective Banding</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch navy" title="Navy"></div>
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+            <div class="prod-swatch black" title="Black"></div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="prod-card">
+        <div class="prod-img">
+          <span class="ansi-badge">ANSI Class 2</span>
+          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Premium Safety Vest" loading="lazy">
+        </div>
+        <div class="prod-body">
+          <div class="prod-style">Style VP130</div>
+          <div class="prod-name">Premium Contractor Safety Vest with Pockets Class 2</div>
+          <div class="prod-swatches">
+            <div class="prod-swatch lime" title="Lime"></div>
+            <div class="prod-swatch orange" title="Orange"></div>
+            <div class="prod-swatch grey" title="Grey"></div>
+            <div class="prod-swatch black" title="Black"></div>
+            <div class="prod-swatch more">+3</div>
+          </div>
+          <a href="../contact-rri/" class="prod-cta">Get a Quote</a>
+        </div>
+      </div>
+
+    </div><!-- end product-grid-main -->
+
+    <div class="load-more-wrap">
+      <button class="btn-load-more">Load More Products</button>
+    </div>
+
+  </div><!-- end catalog-main -->
+
+</div><!-- end catalog-wrap -->
 
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="../index.html"><img src="/Photos/rri-logo-white.png" alt="R &amp; R Industries"></a>
-      <p>Call us Mon–Fri 7:00AM – 4:30PM PDT</p>
+      <p>Call us Mon&ndash;Fri 7:00AM &ndash; 4:30PM PDT</p>
       <p><strong>800-234-5611</strong></p>
       <address>204 Avenida Fabricante<br>San Clemente CA 92672-7538</address>
-      <div class="social"><a href="https://www.linkedin.com/company/rrind/" aria-label="LinkedIn">in</a></div>
+      <div class="social hide-mobile">
+        <a href="https://www.linkedin.com/company/rrind/" title="LinkedIn" aria-label="LinkedIn">in</a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>Help</h4>
@@ -234,7 +638,7 @@
         <li><a href="../terms-and-conditions/">Terms &amp; Conditions</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-col hide-mobile">
       <h4>Browse Products</h4>
       <ul>
         <li><a href="/safety-apparel/">Hi-Vis Vests</a></li>
@@ -245,7 +649,7 @@
         <li><a href="/promos/">Branded Promos</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-col hide-mobile">
       <h4>Search Products</h4>
       <div class="footer-search">
         <input type="text" placeholder="Search gear...">
@@ -254,12 +658,29 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© <a href="../index.html">R &amp; R Industries, Inc.</a> — All Rights Reserved</span>
-    <div class="social"><a href="https://www.linkedin.com/company/rrind/" aria-label="LinkedIn">in</a></div>
+    <span>&copy; <a href="../index.html">R &amp; R Industries, Inc.</a> &mdash; All Rights Reserved</span>
+    <div class="social hide-mobile">
+      <a href="https://www.linkedin.com/company/rrind/" title="LinkedIn" aria-label="LinkedIn">in</a>
+    </div>
   </div>
 </footer>
 
 <script src="../rri.js"></script>
+<script>
+function clearFilters() {
+  document.querySelectorAll('.sidebar input[type=checkbox]').forEach(cb => cb.checked = false);
+  document.getElementById('activeFilters').innerHTML = '';
+}
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => chip.remove());
+});
+</script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
