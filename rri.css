@@ -440,13 +440,13 @@ ul { list-style: none; }
   background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png');
   background-color: #1a2a3a;
   background-size: contain;
-  background-position: center 20%;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 .cat-corporate .cat-card-bg {
   background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Nike-Dri-FIT-Vapor-Polo-NKDC2108-NKDC2108-296-Midnight-navy-Front.png');
   background-color: #1e2f40;
-  background-size: 70%;
+  background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
 }
