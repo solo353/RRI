@@ -1038,4 +1038,7 @@ footer {
   .section-title { font-size: 26px; }
   .page-hero h1 { font-size: 32px; }
   .features-grid, .sellers-grid, .product-grid, .ds-grid, .top-rated-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-col.hide-mobile { display: none; }
+  .social.hide-mobile { display: none; }
+}
