@@ -294,7 +294,7 @@ ul { list-style: none; }
   pointer-events: none;
 }
 .hero-text {
-  padding: 88px var(--pad-x) 88px 80px;
+  padding: 48px var(--pad-x) 48px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -525,14 +525,15 @@ ul { list-style: none; }
 .feature-icon {
   width: 52px;
   height: 52px;
-  background: var(--bg-light);
-  border-radius: 10px;
+  background: rgba(132,204,22,.1);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
-  font-size: 22px;
+  color: #84cc16;
 }
+.feature-icon svg { width: 26px; height: 26px; }
 .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
 .feature-card p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
