@@ -456,6 +456,7 @@ ul { list-style: none; }
   background-size: 75%;
   background-position: 40% 30%;
   background-repeat: no-repeat;
+  filter: brightness(2.5) sepia(1) hue-rotate(55deg) saturate(3);
 }
 
 /* ─── BRAND MARQUEE ─── */
