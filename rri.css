@@ -451,10 +451,10 @@ ul { list-style: none; }
   background-repeat: no-repeat;
 }
 .cat-promos .cat-card-bg {
-  background-image: url('https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-C995-River-Blue-Navy-SIDE.png');
+  background-image: url('/images/download.png');
   background-color: #152030;
-  background-size: 75%;
-  background-position: 40% 30%;
+  background-size: 85%;
+  background-position: center 40%;
   background-repeat: no-repeat;
 }
 
