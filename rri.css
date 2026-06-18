@@ -342,7 +342,7 @@ ul { list-style: none; }
 .hero-img {
   background-image: url('/Photos/RRI-Safety Apparel-S303-Hero Image-mike-01.png');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   position: relative;
 }
 .hero-img::after {
