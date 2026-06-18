@@ -62,7 +62,7 @@ ul { list-style: none; }
   height: 68px;
 }
 .logo { display: flex; align-items: center; }
-.logo img { height: 50px; }
+.logo img { height: 44px; width: auto; }
 
 .nav-links { display: flex; align-items: center; gap: 2px; }
 .nav-links > li { position: relative; }
@@ -917,7 +917,7 @@ footer {
   padding: 64px var(--pad-x) 48px;
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
-.footer-brand img { height: 38px; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 20px; }
+.footer-brand img { height: 48px; width: auto; margin-bottom: 20px; }
 .footer-brand p   { margin-bottom: 4px; line-height: 1.6; }
 .footer-brand strong { color: rgba(255,255,255,.9); font-size: 15px; }
 .footer-brand address { font-style: normal; margin: 12px 0 20px; line-height: 1.7; }
