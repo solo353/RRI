@@ -497,12 +497,12 @@ ul { list-style: none; }
   100% { transform: translateX(-50%); }
 }
 .marquee-track img {
-  height: 52px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   filter: grayscale(1) opacity(1) brightness(.4);
   transition: filter .25s;
-  padding: 0 40px;
+  padding: 0 60px;
 }
 .marquee-track img:hover { filter: grayscale(0) opacity(1); }
 
