@@ -210,6 +210,55 @@ ul { list-style: none; }
 /* No-results */
 .no-results { padding: 48px; text-align: center; color: #94a3b8; font-size: 15px; display: none; }
 
+/* ── PRODUCT GRID (inside sections) ── */
+.prod-subsection { margin-top: 28px; }
+.prod-subsection-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.prod-subsection-header h3 { font-size: 14px; font-weight: 700; color: #0d1b2a; }
+.prod-subsection-header a { font-size: 12.5px; color: #84cc16; font-weight: 600; }
+.prod-subsection-header a:hover { text-decoration: underline; }
+.prod-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.pc-card {
+  background: #fff; border: 1.5px solid #e8ecf0; border-radius: 12px;
+  overflow: hidden; transition: border-color .18s, box-shadow .18s, transform .18s;
+  cursor: pointer;
+}
+.pc-card:hover { border-color: #84cc16; box-shadow: 0 6px 20px rgba(132,204,22,.12); transform: translateY(-2px); }
+.pc-img {
+  aspect-ratio: 1/1; background: #f4f6f8;
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+}
+.pc-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; transition: transform .3s; }
+.pc-card:hover .pc-img img { transform: scale(1.04); }
+.pc-badge {
+  position: absolute; top: 8px; left: 8px;
+  background: #0d1b2a; color: #84cc16;
+  font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+  letter-spacing: .05em;
+}
+.pc-body { padding: 10px 12px 14px; }
+.pc-style { font-size: 10px; color: #94a3b8; font-weight: 600; margin-bottom: 3px; }
+.pc-name { font-size: 12.5px; font-weight: 700; color: #0d1b2a; line-height: 1.3; margin-bottom: 8px; }
+.pc-swatches { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
+.pc-swatch { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #e2e8f0; }
+.pc-swatch.lime { background: #b5e000; }
+.pc-swatch.orange { background: #ff6600; }
+.pc-swatch.black { background: #111; }
+.pc-cta {
+  display: block; width: 100%; background: #0d1b2a; color: #fff;
+  border: none; border-radius: 6px; padding: 8px 0; font-size: 12px; font-weight: 700;
+  text-align: center; text-decoration: none; transition: background .15s; font-family: inherit;
+}
+.pc-cta:hover { background: #84cc16; }
+@media(max-width:1100px){ .prod-grid-4 { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:640px){ .prod-grid-4 { grid-template-columns: repeat(2,1fr); } }
+
 /* Responsive */
 @media(max-width:1100px){
   .main-nav { padding: 0 20px; flex-wrap: wrap; height: auto; }
@@ -245,19 +294,19 @@ ul { list-style: none; }
         <div class="mega-section">
           <h5>Safety Apparel</h5>
           <a href="../safety-apparel/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v3c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Safety Apparel</a>
-          <a href="/product/hi-vis-vests/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M4 4l3 2v10H4V4zM16 4l-3 2v10h3V4zM7 6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Hi-Vis Vests</a>
-          <a href="/product/hi-vis-shirts/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hi-Vis Shirts</a>
+          <a href="../safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M4 4l3 2v10H4V4zM16 4l-3 2v10h3V4zM7 6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Hi-Vis Vests</a>
+          <a href="../safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hi-Vis Shirts</a>
           <a href="../safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M5 4l-3 4h4v8h8V8h4l-3-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 4c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Outerwear &amp; Rainwear</a>
-          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
+          <a href="../safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
         </div>
         <div class="mega-section">
           <h5>Corporate &amp; Promo</h5>
           <a href="../corporate-apparel/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Corporate Apparel</a>
-          <a href="/product/port-authority-polo-k500/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M6 3L3 6l2 1.5V16h10V7.5L17 6l-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c.5 1 1 1.5 2 1.5S11.5 4 12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Polos &amp; Shirts</a>
-          <a href="/product/core-soft-shell-jacket-j317/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M3 8l2-4h2l1 2h4l1-2h2l2 4-2 1v7H5V9L3 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Jackets &amp; Outerwear</a>
+          <a href="../corporate-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M6 3L3 6l2 1.5V16h10V7.5L17 6l-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c.5 1 1 1.5 2 1.5S11.5 4 12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Polos &amp; Shirts</a>
+          <a href="../corporate-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M3 8l2-4h2l1 2h4l1-2h2l2 4-2 1v7H5V9L3 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Jackets &amp; Outerwear</a>
           <a href="../promos/"><span class="nav-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/></svg></span> Branded Promos</a>
-          <a href="/product/headwear/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M4 12c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12h16v1a2 2 0 01-2 2H4a2 2 0 01-2-2v-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span> Headwear</a>
-          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M7 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="8" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/></svg></span> Bags</a>
+          <a href="../corporate-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M4 12c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12h16v1a2 2 0 01-2 2H4a2 2 0 01-2-2v-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span> Headwear</a>
+          <a href="../promos/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M7 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="8" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/></svg></span> Bags</a>
         </div>
         <div class="mega-browse"><a href="/product/">Browse All Products →</a></div>
       </div>
@@ -319,13 +368,13 @@ ul { list-style: none; }
     </div>
     <div class="tile-grid">
 
-      <a href="/product/hi-vis-vests/" class="cat-tile" data-label="hi-vis vests">
+      <a href="../safety-apparel/" class="cat-tile" data-label="hi-vis vests">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Hi-Vis Vests"></div>
         <div class="cat-tile-label">Hi-Vis Vests</div>
         <div class="cat-tile-sub">ANSI Class 2</div>
       </a>
 
-      <a href="/product/hi-vis-shirts/" class="cat-tile" data-label="hi-vis shirts">
+      <a href="../safety-apparel/" class="cat-tile" data-label="hi-vis shirts">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis Shirts"></div>
         <div class="cat-tile-label">Hi-Vis Shirts</div>
         <div class="cat-tile-sub">ANSI Class 3</div>
@@ -344,12 +393,78 @@ ul { list-style: none; }
       </a>
 
       <a href="../safety-apparel/" class="cat-tile" data-label="accessories gloves hard hat">
-        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Accessories"></div>
+        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-P4715Q-120-White-Black-Side-By-Side.png" alt="Accessories"></div>
         <div class="cat-tile-label">Safety Accessories</div>
         <div class="cat-tile-sub">Gloves, PPE &amp; More</div>
       </a>
 
     </div>
+
+    <!-- SAFETY VESTS — ALL PRODUCTS -->
+    <div class="prod-subsection">
+      <div class="prod-subsection-header">
+        <h3>Safety Vests — All Products (27)</h3>
+        <a href="../safety-apparel/">View Full Catalog →</a>
+      </div>
+      <div class="prod-grid-4">
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2 FR</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VFR3-120-Lime-Front.png" alt="VFR3" loading="lazy"></div><div class="pc-body"><div class="pc-style">VFR3-120</div><div class="pc-name">Fire Resistant Surveyor Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-fire-resistant-surveyor-safety-vest-vfr3-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V217-120-Lime-Front.png" alt="V217" loading="lazy"></div><div class="pc-body"><div class="pc-style">V217-120</div><div class="pc-name">Break-Away Surveyor Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-break-away-style-v217-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V200-120-Lime-Front.png" alt="V200" loading="lazy"></div><div class="pc-body"><div class="pc-style">V200-120</div><div class="pc-name">Surveyor Vest — Mesh F&amp;B</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v200-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V201-120-Lime-Front.png" alt="V201" loading="lazy"></div><div class="pc-body"><div class="pc-style">V201-120</div><div class="pc-name">Surveyor Vest — Solid/Mesh</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v201-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V202-120-Lime-Front.png" alt="V202" loading="lazy"></div><div class="pc-body"><div class="pc-style">V202-120</div><div class="pc-name">Surveyor Vest — Solid F&amp;B</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v202-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V210-120-Lime-Front.png" alt="V210" loading="lazy"></div><div class="pc-body"><div class="pc-style">V210-120</div><div class="pc-name">Surveyor Vest — Contrast Stripe</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v210-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V211-120-Lime-Front.png" alt="V211" loading="lazy"></div><div class="pc-body"><div class="pc-style">V211-120</div><div class="pc-name">Surveyor Vest — Solid Stripe</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v211-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V273-120-Lime-Front.png" alt="V273" loading="lazy"></div><div class="pc-body"><div class="pc-style">V273-120</div><div class="pc-name">Surveyor Vest — 9 Pockets</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v273-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 3</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V310-120-Lime-Front.png" alt="V310" loading="lazy"></div><div class="pc-body"><div class="pc-style">V310-120</div><div class="pc-name">Class III Surveyor — Contrast Stripe</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-v310-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VE202-120-Lime-Front.png" alt="VE202" loading="lazy"></div><div class="pc-body"><div class="pc-style">VE202-120</div><div class="pc-name">Economy Vest — Solid</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-ve202-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VE210-120-Lime-Front.png" alt="VE210" loading="lazy"></div><div class="pc-body"><div class="pc-style">VE210-120</div><div class="pc-name">Economy Vest — Mesh</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-ii-surveyor-safety-vest-ve210-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 3</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V373-120-Lime-Front.png" alt="V373" loading="lazy"></div><div class="pc-body"><div class="pc-style">V373-120</div><div class="pc-name">Class III Surveyor — 9 Pockets</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-iii-surveyor-safety-vest-v373-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 3</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VE304-120-Lime-Front.png" alt="VE304" loading="lazy"></div><div class="pc-body"><div class="pc-style">VE304-120</div><div class="pc-name">Class III Economy — Mesh (7X)</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-iii-surveyor-safety-vest-ve304-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 3</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VE310-120-Lime-Front.png" alt="VE310" loading="lazy"></div><div class="pc-body"><div class="pc-style">VE310-120</div><div class="pc-name">Class III Economy — Mesh</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-class-iii-surveyor-safety-vest-ve310-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-VE200-120-Lime-Front.png" alt="VE200" loading="lazy"></div><div class="pc-body"><div class="pc-style">VE200-120</div><div class="pc-name">Class II Economy — Mesh</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/ansi-ii-vest-economy-ve200-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V2510-120-Lime-Front.png" alt="V2510" loading="lazy"></div><div class="pc-body"><div class="pc-style">V2510-120</div><div class="pc-name">All Mesh Back Safety Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/class-ii-all-mesh-back-safety-vest-v2510-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="V218" loading="lazy"></div><div class="pc-body"><div class="pc-style">V218-120</div><div class="pc-name">Orange Vest w/ Lime &amp; Black 3M</div><div class="pc-swatches"><div class="pc-swatch orange"></div><div class="pc-swatch lime"></div><div class="pc-swatch black"></div></div><a href="https://danielr685.sg-host.com/product/class-ii-mens-orange-safety-vest-with-lime-and-black-3m-v218-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V2500-120-Lime-Front.png" alt="V2500" loading="lazy"></div><div class="pc-body"><div class="pc-style">V2500-120</div><div class="pc-name">Mesh Vest — Lime/Black</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch black"></div></div><a href="https://danielr685.sg-host.com/product/class-ii-vest-mesh-v2500-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 3</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V318-120-Lime-Front.png" alt="V318" loading="lazy"></div><div class="pc-body"><div class="pc-style">V318-120</div><div class="pc-name">Class III Safety Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/class-iii-vest-v318-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Economy</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-Econ-Safety-Vest-model-891-120-LIME-Front.png" alt="891" loading="lazy"></div><div class="pc-body"><div class="pc-style">891-120</div><div class="pc-name">Economy Safety Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/econ-safety-vest-891-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Enhanced</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-SAFETY-APPAREL-ENHANCED-VISIBILITY-HYPE-LITE-HEAVY-DUTY-VEST-1715-1921.png" alt="1715" loading="lazy"></div><div class="pc-body"><div class="pc-style">1715-1921</div><div class="pc-name">Hype-Lite Heavy Duty Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/enhanced-visibility-hype-lite-heavy-duty-vest-1715-1921/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Enhanced</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-SAFETY-APPAREL-ENHANCED-VISIBILITY-HYPE-LITE-HEAVY-DUTY-VEST-1717-1921.png" alt="1717" loading="lazy"></div><div class="pc-body"><div class="pc-style">1717-1921</div><div class="pc-name">Hype-Lite Heavy Duty Vest II</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/enhanced-visibility-hype-lite-heavy-duty-vest-1717-1921/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Enhanced</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-SAFETY-APPAREL-ENHANCED-VISIBILITY-MULTI-COLOR-VEST-3133-1921.png" alt="3133" loading="lazy"></div><div class="pc-body"><div class="pc-style">3133-1921</div><div class="pc-name">Multi-Color Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/enhanced-visibility-multi-color-vest-3133-1921/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-NON-ANSI-Surveyor-Safety-Vest-model-880-120-Orange-Front-View.png" alt="880" loading="lazy"></div><div class="pc-body"><div class="pc-style">880-120</div><div class="pc-name">Non-ANSI Surveyor Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/non-ansi-surveyor-safety-vest-880-120/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-SAFETY-VEST-ONYX-Class-2-Surveyors-Safety-Vest-1513-1921-Black.png" alt="1513" loading="lazy"></div><div class="pc-body"><div class="pc-style">1513-1921</div><div class="pc-name">ONYX Class II Surveyor's Vest</div><div class="pc-swatches"><div class="pc-swatch black"></div></div><a href="https://danielr685.sg-host.com/product/onyx-class-ii-surveyors-safety-vest-1513-1921/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Heavy Duty</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-SAFETY-APPAREL-SAFETY-VEST-PREMIUM-HEAVY-DUTY-VEST-W-MULTI-POCKETS-1202-1921-Hiviz.png" alt="1202" loading="lazy"></div><div class="pc-body"><div class="pc-style">1202-1921</div><div class="pc-name">Premium Heavy Duty Multi-Pocket Vest</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/premium-heavy-duty-vest-with-multi-pockets-1202-1921/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+        <div class="pc-card"><div class="pc-img"><span class="pc-badge">Class 2 FR</span><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-Safety-Vest-RF-CLASS-II-ANSI-ISEA-107-2025-1287FR-Z-RD-1870-Lime.png" alt="1287FR" loading="lazy"></div><div class="pc-body"><div class="pc-style">1287FR-Z-RD-1870</div><div class="pc-name">RF Class II FR Vest ANSI/ISEA 107-2025</div><div class="pc-swatches"><div class="pc-swatch lime"></div><div class="pc-swatch orange"></div></div><a href="https://danielr685.sg-host.com/product/rf-class-ii-ansi-isea-107-2025-1287fr-z-rd-1870/" class="pc-cta" target="_blank">Get a Quote</a></div></div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- CORPORATE APPAREL -->
@@ -360,25 +475,25 @@ ul { list-style: none; }
     </div>
     <div class="tile-grid">
 
-      <a href="/product/port-authority-polo-k500/" class="cat-tile" data-label="polos shirts polo">
+      <a href="../corporate-apparel/" class="cat-tile" data-label="polos shirts polo">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Silk-Touch-Polo-K500-K500-296-Royal-Front_1.png" alt="Polos"></div>
         <div class="cat-tile-label">Polos &amp; Shirts</div>
         <div class="cat-tile-sub">12+ Colors</div>
       </a>
 
-      <a href="/product/core-soft-shell-jacket-j317/" class="cat-tile" data-label="jackets outerwear softshell">
+      <a href="../corporate-apparel/" class="cat-tile" data-label="jackets outerwear softshell">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Core-Soft-Shell-Jacket-J317-J317-296-Battleship-grey-Front_1.png" alt="Jackets"></div>
         <div class="cat-tile-label">Jackets &amp; Outerwear</div>
         <div class="cat-tile-sub">Soft Shell &amp; Fleece</div>
       </a>
 
-      <a href="/product/posicharge-competitor-tee-st350/" class="cat-tile" data-label="t-shirts performance tee">
+      <a href="../corporate-apparel/" class="cat-tile" data-label="t-shirts performance tee">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Sport-Tek-PosiCharge-Competitor-Tee-ST350-ST350-296-Neon-yellow-Front_1.png" alt="T-Shirts"></div>
         <div class="cat-tile-label">T-Shirts &amp; Performance</div>
         <div class="cat-tile-sub">20+ Colors</div>
       </a>
 
-      <a href="/product/headwear/" class="cat-tile" data-label="headwear caps hats">
+      <a href="../corporate-apparel/" class="cat-tile" data-label="headwear caps hats">
         <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Nike-Dri-FIT-Vapor-Polo-NKDC2108-NKDC2108-296-Midnight-navy-Front.png" alt="Headwear"></div>
         <div class="cat-tile-label">Headwear</div>
         <div class="cat-tile-sub">Caps, Beanies &amp; Visors</div>
@@ -401,20 +516,20 @@ ul { list-style: none; }
     </div>
     <div class="tile-grid">
 
-      <a href="../promos/" class="cat-tile" data-label="branded drinkware tumblers mugs">
-        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Drinkware"></div>
-        <div class="cat-tile-label">Drinkware</div>
-        <div class="cat-tile-sub">Tumblers, Mugs &amp; Bottles</div>
+      <a href="../promos/" class="cat-tile" data-label="branded drinkware tumblers mugs cooler">
+        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Promo-Outdoor-Waterproof-Bluetooth-Speaker-7197-25-763.png" alt="Drinkware"></div>
+        <div class="cat-tile-label">Drinkware &amp; Tech</div>
+        <div class="cat-tile-sub">Tumblers, Mugs &amp; More</div>
       </a>
 
-      <a href="../promos/" class="cat-tile" data-label="promotional items giveaways pens">
-        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Promo Items"></div>
+      <a href="../promos/" class="cat-tile" data-label="promotional items giveaways backpack tech">
+        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Promotional-Items-OGIO-Carbon-Pack-711140-711140-296-Royal-Front.png" alt="Promo Items"></div>
         <div class="cat-tile-label">Promo Items</div>
-        <div class="cat-tile-sub">Pens, Notebooks &amp; More</div>
+        <div class="cat-tile-sub">Packs, Speakers &amp; More</div>
       </a>
 
-      <a href="../promos/" class="cat-tile" data-label="branded bags totes promo">
-        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Branded Bags"></div>
+      <a href="../promos/" class="cat-tile" data-label="branded bags totes promo gear tool">
+        <div class="cat-tile-img"><img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Promotional-Items-Carhartt-Foundry-Series-14-Tool-Bag-CT89240105-CT89240105-296-Carhartt-brown-Front.png" alt="Branded Bags"></div>
         <div class="cat-tile-label">Branded Bags</div>
         <div class="cat-tile-sub">Trade Show &amp; Events</div>
       </a>
@@ -444,11 +559,11 @@ ul { list-style: none; }
     <div class="footer-col">
       <h4>Browse Products</h4>
       <ul>
-        <li><a href="/product/hi-vis-vests/">Hi-Vis Vests</a></li>
-        <li><a href="/product/hi-vis-shirts/">Hi-Vis Shirts</a></li>
-        <li><a href="/product/headwear/">Headwear</a></li>
-        <li><a href="/product/port-authority-polo-k500/">Polos</a></li>
-        <li><a href="/promos/">Branded Promos</a></li>
+        <li><a href="../safety-apparel/">Hi-Vis Vests</a></li>
+        <li><a href="../safety-apparel/">Hi-Vis Shirts</a></li>
+        <li><a href="../corporate-apparel/">Headwear</a></li>
+        <li><a href="../corporate-apparel/">Polos</a></li>
+        <li><a href="../promos/">Branded Promos</a></li>
       </ul>
     </div>
     <div class="footer-col">
