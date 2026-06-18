@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Products | R &amp; R Industries</title>
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Browse all RRI safety apparel, corporate apparel, and branded gear. Custom decoration available on every product.">
 <link rel="stylesheet" href="../rri.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a202c; background: #fff; }
+body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a202c; background: #f7f8fa; }
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 ul { list-style: none; }
+
+/* ── NAV (inline fallback) ── */
 .top-bar { background: #0d1b2a; color: rgba(255,255,255,.75); font-size: 12.5px; padding: 8px 80px; display: flex; justify-content: flex-end; gap: 24px; }
 .top-bar a { color: rgba(255,255,255,.75); }
 .main-nav { background: #fff; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 500; box-shadow: 0 1px 0 #e2e8f0; height: 68px; }
@@ -36,126 +37,244 @@ ul { list-style: none; }
 .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
 .hamburger span { display: block; width: 22px; height: 2px; background: #2C3E50; margin: 5px 0; border-radius: 2px; }
 
-/* Page header */
-.catalog-header {
-  background: #0d1b2a;
-  padding: 56px 80px 48px;
-  color: #fff;
+/* ── CATALOG LAYOUT ── */
+.catalog-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 68px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px 64px;
+  gap: 32px;
+  align-items: start;
 }
-.catalog-header .section-label {
-  display: inline-block;
-  font-size: 11px;
+
+/* ── SIDEBAR ── */
+.sidebar {
+  padding: 32px 0;
+  position: sticky;
+  top: 84px;
+}
+.sidebar-section { margin-bottom: 32px; }
+.sidebar-heading {
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: #84cc16;
+  color: #94a3b8;
   margin-bottom: 12px;
 }
-.catalog-header h1 {
-  font-size: 36px;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 12px;
+.sidebar-search {
+  position: relative;
 }
-.catalog-header p {
-  font-size: 16px;
-  color: rgba(255,255,255,.65);
-  max-width: 540px;
-}
-
-/* Filter bar */
-.filter-bar {
-  background: #f4f5f7;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 16px 80px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.filter-btn {
-  padding: 7px 16px;
+.sidebar-search input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
   border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #2C3E50;
-  background: #fff;
-  cursor: pointer;
+  border-radius: 8px;
+  font-size: 13.5px;
   font-family: inherit;
-  transition: background .15s, border-color .15s, color .15s;
+  background: #fff;
+  color: #1a202c;
+  outline: none;
+  transition: border-color .15s;
 }
-.filter-btn:hover, .filter-btn.active { background: #2C3E50; color: #fff; border-color: #2C3E50; }
-.filter-btn.active-green { background: #84cc16; color: #fff; border-color: #84cc16; }
-
-/* Grid */
-.catalog-wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 48px 80px 72px;
+.sidebar-search input:focus { border-color: #84cc16; }
+.sidebar-search svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
 }
-.catalog-section-title {
+.cat-list { display: flex; flex-direction: column; gap: 2px; }
+.cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1a202c;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+.cat-item:hover { background: #fff; color: #84cc16; }
+.cat-item.active { background: #fff; color: #84cc16; font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.cat-item .count {
   font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: #64748b;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e2e8f0;
+  color: #94a3b8;
+  background: #f0f2f5;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
 }
-.catalog-section { margin-bottom: 56px; }
+.cat-item.active .count { background: #e8f7d4; color: #5a9a00; }
+
+/* ── MAIN CONTENT ── */
+.catalog-main { padding-top: 32px; }
+
+.catalog-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+.catalog-title { font-size: 22px; font-weight: 800; color: #1a202c; }
+.catalog-count { font-size: 13px; color: #64748b; margin-top: 3px; }
+.catalog-controls { display: flex; gap: 10px; align-items: center; }
+.sort-select {
+  padding: 8px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #1a202c;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Active filter chips */
+.filter-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0d1b2a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+.chip-remove { cursor: pointer; opacity: .6; }
+.chip-remove:hover { opacity: 1; }
+
+/* ── PRODUCT GRID ── */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 .product-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  border: 1px solid #e8eaf0;
+  border-radius: 12px;
   overflow: hidden;
-  transition: box-shadow .2s, transform .2s;
-  cursor: pointer;
+  transition: box-shadow .2s, transform .18s;
+  display: flex;
+  flex-direction: column;
 }
-.product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.10); transform: translateY(-3px); }
+.product-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.10); transform: translateY(-3px); }
 .product-card-img {
-  background: #f7f8fa;
+  background: #f4f5f7;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
-.product-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 16px; }
-.product-card-body { padding: 16px; }
-.product-card-body .tag {
+.product-card-img img { width: 100%; height: 100%; object-fit: contain; padding: 20px; transition: transform .3s; }
+.product-card:hover .product-card-img img { transform: scale(1.04); }
+.product-badge-wrap { position: absolute; top: 12px; left: 12px; }
+.badge {
+  display: inline-block;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.badge-green { background: #84cc16; color: #fff; }
+.badge-dark  { background: #0d1b2a; color: #fff; }
+.badge-blue  { background: #3b82f6; color: #fff; }
+
+.product-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: .08em;
-  color: #84cc16;
+  color: #94a3b8;
   margin-bottom: 6px;
 }
-.product-card-body h3 { font-size: 14px; font-weight: 700; color: #2C3E50; margin-bottom: 6px; line-height: 1.3; }
-.product-card-body p { font-size: 12.5px; color: #64748b; margin-bottom: 14px; line-height: 1.55; }
+.product-card-body h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1a202c;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.product-card-body p {
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 16px;
+}
 .btn-view {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   color: #2C3E50;
   border: 1.5px solid #e2e8f0;
-  padding: 7px 14px;
-  border-radius: 6px;
-  transition: background .15s, border-color .15s;
+  padding: 9px 16px;
+  border-radius: 8px;
+  transition: background .15s, border-color .15s, color .15s;
+  width: 100%;
 }
-.btn-view:hover { background: #f4f5f7; border-color: #2C3E50; }
-.btn-view::after { content: '→'; }
+.btn-view:hover { background: #0d1b2a; color: #fff; border-color: #0d1b2a; }
 
-@media(max-width:1100px){ .main-nav { padding: 0 20px; flex-wrap: wrap; height: auto; } .nav-links { display: none; flex-direction: column; width: 100%; padding: 8px 0 16px; } .nav-links.open { display: flex; } .hamburger { display: block; margin-left: auto; } .dropdown, .mega-drop { display: none !important; } .nav-links > li.open > .dropdown, .nav-links > li.open > .mega-drop { display: flex !important; flex-direction: column; position: static; box-shadow: none; border: none; padding-left: 16px; } .top-bar, .filter-bar { padding-left: 20px; padding-right: 20px; } .catalog-header { padding: 40px 20px 32px; } .catalog-wrap { padding: 32px 20px 48px; } }
-@media(max-width:900px){ .product-grid { grid-template-columns: repeat(2,1fr); } }
+/* Section dividers */
+.cat-group { margin-bottom: 40px; }
+.cat-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #94a3b8;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cat-group-label a { font-size: 11px; color: #84cc16; letter-spacing: 0; text-transform: none; font-weight: 600; }
+
+/* Responsive */
+@media(max-width:1100px){
+  .main-nav { padding: 0 20px; flex-wrap: wrap; height: auto; }
+  .nav-links { display: none; flex-direction: column; width: 100%; padding: 8px 0 16px; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: block; margin-left: auto; }
+  .dropdown, .mega-drop { display: none !important; }
+  .nav-links > li.open > .dropdown, .nav-links > li.open > .mega-drop { display: flex !important; flex-direction: column; position: static; box-shadow: none; border: none; padding-left: 16px; }
+  .top-bar { padding: 8px 20px; }
+  .catalog-shell { grid-template-columns: 1fr; padding: 0 20px 48px; }
+  .sidebar { position: static; padding: 20px 0 0; }
+  .cat-list { flex-direction: row; flex-wrap: wrap; }
+}
+@media(max-width:800px){ .product-grid { grid-template-columns: repeat(2,1fr); } }
 @media(max-width:480px){ .product-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -179,7 +298,7 @@ ul { list-style: none; }
           <a href="/product/hi-vis-vests/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M4 4l3 2v10H4V4zM16 4l-3 2v10h3V4zM7 6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Hi-Vis Vests</a>
           <a href="/product/hi-vis-shirts/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M7 3L3 6l2 2 1-1v9h8V7l1 1 2-2-4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hi-Vis Shirts</a>
           <a href="../safety-apparel/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><path d="M5 4l-3 4h4v8h8V8h4l-3-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 4c0 1.1.9 2 2 2s2-.9 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Outerwear &amp; Rainwear</a>
-          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5.6 5.6l1.4 1.4M13 13l1.4 1.4M5.6 14.4L7 13M13 7l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
+          <a href="/product/"><span class="nav-icon nav-icon-sub"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Accessories</a>
         </div>
         <div class="mega-section">
           <h5>Corporate &amp; Promo</h5>
@@ -196,26 +315,17 @@ ul { list-style: none; }
     <li>
       <a href="../industries/">Industries ▾</a>
       <ul class="dropdown">
-        <li><a href="/industries/">Aviation</a></li>
-        <li><a href="/industries/">Construction</a></li>
-        <li><a href="/industries/">Energy &amp; Utilities</a></li>
-        <li><a href="/industries/">Food &amp; Beverage</a></li>
-        <li><a href="/industries/">Government</a></li>
-        <li><a href="/industries/">Hospitality</a></li>
-        <li><a href="/industries/">Landscaping</a></li>
-        <li><a href="/industries/">Logistics</a></li>
-        <li><a href="/industries/">Waste Management</a></li>
+        <li><a href="/industries/">Aviation</a></li><li><a href="/industries/">Construction</a></li>
+        <li><a href="/industries/">Energy &amp; Utilities</a></li><li><a href="/industries/">Food &amp; Beverage</a></li>
+        <li><a href="/industries/">Government</a></li><li><a href="/industries/">Hospitality</a></li>
       </ul>
     </li>
     <li><a href="../direct-store/">Direct Store</a></li>
     <li>
       <a href="../resources/">Resources ▾</a>
       <ul class="dropdown">
-        <li><a href="/resources/">About RRI</a></li>
-        <li><a href="/resources/">Decoration Services</a></li>
-        <li><a href="/resources/">ANSI Compliance</a></li>
-        <li><a href="/resources/">Size Charts</a></li>
-        <li><a href="/resources/">News</a></li>
+        <li><a href="/resources/">About RRI</a></li><li><a href="/resources/">Decoration Services</a></li>
+        <li><a href="/resources/">ANSI Compliance</a></li><li><a href="/resources/">Size Charts</a></li>
       </ul>
     </li>
     <li><a href="../contact-rri/">Contact</a></li>
@@ -224,192 +334,205 @@ ul { list-style: none; }
   <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HEADER -->
-<div class="catalog-header">
-  <span class="section-label">Full Catalog</span>
-  <h1>All Products</h1>
-  <p>Safety apparel, corporate gear, and branded promos — all available for custom decoration and fast fulfillment.</p>
-</div>
+<!-- CATALOG LAYOUT -->
+<div class="catalog-shell">
 
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterCatalog('all', this)">All Products</button>
-  <button class="filter-btn" onclick="filterCatalog('safety', this)">Safety Apparel</button>
-  <button class="filter-btn" onclick="filterCatalog('corporate', this)">Corporate Apparel</button>
-  <button class="filter-btn" onclick="filterCatalog('promo', this)">Branded Promos</button>
-</div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-<!-- GRID -->
-<div class="catalog-wrap">
-
-  <!-- Safety Apparel -->
-  <div class="catalog-section" data-category="safety">
-    <div class="catalog-section-title">Safety Apparel</div>
-    <div class="product-grid">
-
-      <a href="/product/hi-vis-vests/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Hi-Vis Vests">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">ANSI Class 2</div>
-          <h3>Hi-Vis Safety Vest V218</h3>
-          <p>Lightweight mesh vest with reflective tape. Lime and Orange.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="/product/hi-vis-shirts/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis Shirts">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">ANSI Class 3</div>
-          <h3>Hi-Vis Performance Shirt T300</h3>
-          <p>Moisture-wicking shirt with reflective tape. Short &amp; long sleeve.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="../safety-apparel/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Outerwear">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Safety</div>
-          <h3>Outerwear &amp; Rainwear</h3>
-          <p>Hi-vis jackets and rain gear for all-weather jobsite protection.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
-      <a href="../safety-apparel/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Accessories">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Safety</div>
-          <h3>Safety Accessories</h3>
-          <p>Gloves, glasses, hard hats, and add-on safety gear.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Search</div>
+      <div class="sidebar-search">
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="text" id="search-input" placeholder="Search products..." oninput="filterProducts()">
+      </div>
     </div>
-  </div>
 
-  <!-- Corporate Apparel -->
-  <div class="catalog-section" data-category="corporate">
-    <div class="catalog-section-title">Corporate Apparel</div>
-    <div class="product-grid">
-
-      <a href="/product/port-authority-polo-k500/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Silk-Touch-Polo-K500-K500-296-Royal-Front_1.png" alt="Silk Touch Polo">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Best Seller</div>
-          <h3>Port Authority® Silk Touch™ Polo K500</h3>
-          <p>65/35 poly/cotton. XS–6XL. 12+ colors.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="/product/core-soft-shell-jacket-j317/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Core-Soft-Shell-Jacket-J317-J317-296-Battleship-grey-Front_1.png" alt="Soft Shell Jacket">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Outerwear</div>
-          <h3>Core Soft Shell Jacket J317</h3>
-          <p>Wind &amp; water-resistant. XS–4XL. 3 colors.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="/product/posicharge-competitor-tee-st350/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Sport-Tek-PosiCharge-Competitor-Tee-ST350-ST350-296-Neon-yellow-Front_1.png" alt="Competitor Tee">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Performance</div>
-          <h3>PosiCharge® Competitor™ Tee ST350</h3>
-          <p>Moisture-wicking. XS–4XL. 20+ colors.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="/product/headwear/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Nike-Dri-FIT-Vapor-Polo-NKDC2108-NKDC2108-296-Midnight-navy-Front.png" alt="Headwear">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Headwear</div>
-          <h3>Nike Dri-FIT Legacy Cap</h3>
-          <p>Structured six-panel. One size fits most.</p>
-          <span class="btn-view">View Product</span>
-        </div>
-      </a>
-
-      <a href="../corporate-apparel/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Value-Fleece-Jacket-F217-F217-296-Insignia-blue-Front_1.png" alt="Fleece Jacket">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Outerwear</div>
-          <h3>Value Fleece Jacket F217</h3>
-          <p>Anti-pill fleece. Embroidery-ready.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
-      <a href="../corporate-apparel/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-C995-River-Blue-Navy-SIDE.png" alt="Bags">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Bags</div>
-          <h3>Bags &amp; Backpacks</h3>
-          <p>Custom branded bags, totes, and backpacks.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Categories</div>
+      <div class="cat-list">
+        <button class="cat-item active" onclick="setCategory('all', this)">All Products <span class="count">10</span></button>
+        <button class="cat-item" onclick="setCategory('safety', this)">Safety Apparel <span class="count">4</span></button>
+        <button class="cat-item" onclick="setCategory('corporate', this)">Corporate Apparel <span class="count">4</span></button>
+        <button class="cat-item" onclick="setCategory('promo', this)">Branded Promos <span class="count">2</span></button>
+      </div>
     </div>
-  </div>
 
-  <!-- Branded Promos -->
-  <div class="catalog-section" data-category="promo">
-    <div class="catalog-section-title">Branded Promos</div>
-    <div class="product-grid">
-
-      <a href="../promos/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Branded Promos">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Promos</div>
-          <h3>Branded Promotional Items</h3>
-          <p>Pens, drinkware, notebooks, and branded giveaway items.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
-      <a href="../promos/" class="product-card">
-        <div class="product-card-img">
-          <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Drinkware">
-        </div>
-        <div class="product-card-body">
-          <div class="tag">Promos</div>
-          <h3>Custom Drinkware</h3>
-          <p>Tumblers, mugs, and bottles with your logo.</p>
-          <span class="btn-view">Browse Collection</span>
-        </div>
-      </a>
-
+    <div class="sidebar-section">
+      <div class="sidebar-heading">Quick Links</div>
+      <div class="cat-list">
+        <a href="../direct-store/" class="cat-item">Set Up a Direct Store</a>
+        <a href="../contact-rri/" class="cat-item">Request a Quote</a>
+        <a href="../safety-apparel/" class="cat-item">Safety Apparel Guide</a>
+      </div>
     </div>
-  </div>
 
+  </aside>
+
+  <!-- MAIN -->
+  <main class="catalog-main">
+    <div class="catalog-topbar">
+      <div>
+        <div class="catalog-title" id="cat-title">All Products</div>
+        <div class="catalog-count" id="cat-count">Showing 10 products</div>
+      </div>
+      <div class="catalog-controls">
+        <select class="sort-select" onchange="sortProducts(this.value)">
+          <option value="default">Default Sorting</option>
+          <option value="az">Name: A → Z</option>
+          <option value="za">Name: Z → A</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SAFETY APPAREL GROUP -->
+    <div class="cat-group" data-group="safety">
+      <div class="cat-group-label">Safety Apparel <a href="../safety-apparel/">View All →</a></div>
+      <div class="product-grid">
+
+        <a href="/product/hi-vis-vests/" class="product-card" data-cat="safety" data-name="hi-vis safety vest v218">
+          <div class="product-card-img">
+            <div class="product-badge-wrap"><span class="badge badge-green">ANSI Class 2</span></div>
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/05/RRI-Safety-Apparel-V218-120-Lime-Front.png" alt="Hi-Vis Vest V218">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Safety Apparel</div>
+            <h3>Hi-Vis Safety Vest V218</h3>
+            <p>Lightweight mesh vest with 2" reflective tape. Lime &amp; Orange. XS–5XL.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+        <a href="/product/hi-vis-shirts/" class="product-card" data-cat="safety" data-name="hi-vis performance shirt t300">
+          <div class="product-card-img">
+            <div class="product-badge-wrap"><span class="badge badge-green">ANSI Class 3</span></div>
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/RRI-Mens-reflective-shirt-T300-Lime-FRONT.png" alt="Hi-Vis Shirt T300">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Safety Apparel</div>
+            <h3>Hi-Vis Performance Shirt T300</h3>
+            <p>Moisture-wicking with reflective tape. Short &amp; long sleeve. XS–5XL.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+        <a href="../safety-apparel/" class="product-card" data-cat="safety" data-name="outerwear rainwear jackets">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Outerwear">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Safety Apparel</div>
+            <h3>Outerwear &amp; Rainwear</h3>
+            <p>Hi-vis jackets and rain gear for all-weather jobsite protection.</p>
+            <span class="btn-view">Browse Collection</span>
+          </div>
+        </a>
+
+        <a href="../safety-apparel/" class="product-card" data-cat="safety" data-name="safety accessories gloves">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Accessories">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Safety Apparel</div>
+            <h3>Safety Accessories</h3>
+            <p>Gloves, glasses, hard hats, and jobsite safety add-ons.</p>
+            <span class="btn-view">Browse Collection</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- CORPORATE APPAREL GROUP -->
+    <div class="cat-group" data-group="corporate">
+      <div class="cat-group-label">Corporate Apparel <a href="../corporate-apparel/">View All →</a></div>
+      <div class="product-grid">
+
+        <a href="/product/port-authority-polo-k500/" class="product-card" data-cat="corporate" data-name="port authority silk touch polo k500">
+          <div class="product-card-img">
+            <div class="product-badge-wrap"><span class="badge badge-dark">Best Seller</span></div>
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Silk-Touch-Polo-K500-K500-296-Royal-Front_1.png" alt="Polo K500">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Corporate Apparel</div>
+            <h3>Port Authority® Silk Touch™ Polo K500</h3>
+            <p>65/35 poly/cotton pique. 12+ colors. XS–6XL.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+        <a href="/product/core-soft-shell-jacket-j317/" class="product-card" data-cat="corporate" data-name="core soft shell jacket j317">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Port-Authority-Core-Soft-Shell-Jacket-J317-J317-296-Battleship-grey-Front_1.png" alt="Soft Shell J317">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Corporate Apparel</div>
+            <h3>Core Soft Shell Jacket J317</h3>
+            <p>Wind &amp; water-resistant softshell. 3 colors. XS–4XL.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+        <a href="/product/posicharge-competitor-tee-st350/" class="product-card" data-cat="corporate" data-name="posicharge competitor tee st350">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Sport-Tek-PosiCharge-Competitor-Tee-ST350-ST350-296-Neon-yellow-Front_1.png" alt="Competitor Tee ST350">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Corporate Apparel</div>
+            <h3>PosiCharge® Competitor™ Tee ST350</h3>
+            <p>Moisture-wicking performance tee. 20+ colors. XS–4XL.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+        <a href="/product/headwear/" class="product-card" data-cat="corporate" data-name="nike dri-fit legacy cap headwear">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/06/RRI-Corporate-Apparel-Nike-Dri-FIT-Vapor-Polo-NKDC2108-NKDC2108-296-Midnight-navy-Front.png" alt="Headwear">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Corporate Apparel · Headwear</div>
+            <h3>Nike Dri-FIT Legacy Cap</h3>
+            <p>Structured six-panel. Dri-FIT sweatband. One size fits most.</p>
+            <span class="btn-view">View Product</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- BRANDED PROMOS GROUP -->
+    <div class="cat-group" data-group="promo">
+      <div class="cat-group-label">Branded Promos <a href="../promos/">View All →</a></div>
+      <div class="product-grid">
+
+        <a href="../promos/" class="product-card" data-cat="promo" data-name="branded promotional items">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Branded Promos">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Branded Promos</div>
+            <h3>Branded Promotional Items</h3>
+            <p>Pens, notebooks, drinkware, and custom branded giveaways.</p>
+            <span class="btn-view">Browse Collection</span>
+          </div>
+        </a>
+
+        <a href="../promos/" class="product-card" data-cat="promo" data-name="custom drinkware tumblers mugs">
+          <div class="product-card-img">
+            <img src="https://danielr685.sg-host.com/wp-content/uploads/2026/04/PROCESS-gear-3-squares-250x250-STEEL-BLUE-100x100.png" alt="Drinkware">
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-cat">Branded Promos</div>
+            <h3>Custom Drinkware</h3>
+            <p>Tumblers, mugs, and bottles with your logo — ready to ship.</p>
+            <span class="btn-view">Browse Collection</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
 </div>
 
 <footer>
@@ -425,7 +548,6 @@ ul { list-style: none; }
       <h4>Help</h4>
       <ul>
         <li><a href="../contact-rri/">Request a Quote</a></li>
-        <li><a href="/resources/">About RRI</a></li>
         <li><a href="../resources/">Resources</a></li>
         <li><a href="../terms-and-conditions/">Terms &amp; Conditions</a></li>
       </ul>
@@ -437,7 +559,6 @@ ul { list-style: none; }
         <li><a href="/product/hi-vis-shirts/">Hi-Vis Shirts</a></li>
         <li><a href="/product/headwear/">Headwear</a></li>
         <li><a href="/product/port-authority-polo-k500/">Polos</a></li>
-        <li><a href="/corporate-apparel/">Corporate Apparel</a></li>
         <li><a href="/promos/">Branded Promos</a></li>
       </ul>
     </div>
@@ -457,15 +578,59 @@ ul { list-style: none; }
 
 <script src="../rri.js"></script>
 <script>
-function filterCatalog(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+let activeCategory = 'all';
+
+function setCategory(cat, btn) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-item').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.catalog-section').forEach(s => {
-    if (cat === 'all' || s.dataset.category === cat) {
-      s.style.display = '';
-    } else {
-      s.style.display = 'none';
-    }
+
+  const titles = { all: 'All Products', safety: 'Safety Apparel', corporate: 'Corporate Apparel', promo: 'Branded Promos' };
+  document.getElementById('cat-title').textContent = titles[cat];
+
+  filterProducts();
+}
+
+function filterProducts() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  let visible = 0;
+
+  document.querySelectorAll('.cat-group').forEach(group => {
+    const groupCat = group.dataset.group;
+    const showGroup = activeCategory === 'all' || activeCategory === groupCat;
+    let groupVisible = 0;
+
+    group.querySelectorAll('.product-card').forEach(card => {
+      const cardCat = card.dataset.cat;
+      const cardName = card.dataset.name;
+      const matchCat = activeCategory === 'all' || activeCategory === cardCat;
+      const matchSearch = !query || cardName.includes(query);
+      if (matchCat && matchSearch && showGroup) {
+        card.style.display = '';
+        groupVisible++;
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    group.style.display = (showGroup && groupVisible > 0) ? '' : 'none';
+  });
+
+  document.getElementById('cat-count').textContent = `Showing ${visible} product${visible !== 1 ? 's' : ''}`;
+}
+
+function sortProducts(val) {
+  document.querySelectorAll('.product-grid').forEach(grid => {
+    const cards = [...grid.querySelectorAll('.product-card')];
+    cards.sort((a, b) => {
+      const an = a.querySelector('h3').textContent;
+      const bn = b.querySelector('h3').textContent;
+      if (val === 'az') return an.localeCompare(bn);
+      if (val === 'za') return bn.localeCompare(an);
+      return 0;
+    });
+    cards.forEach(c => grid.appendChild(c));
   });
 }
 </script>
