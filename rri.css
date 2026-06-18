@@ -453,8 +453,8 @@ ul { list-style: none; }
 .cat-promos .cat-card-bg {
   background-image: url('/images/download.png');
   background-color: #152030;
-  background-size: 85%;
-  background-position: center 40%;
+  background-size: 55%;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
