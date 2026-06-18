@@ -62,7 +62,7 @@ ul { list-style: none; }
   height: 68px;
 }
 .logo { display: flex; align-items: center; }
-.logo img { height: 42px; }
+.logo img { height: 50px; }
 
 .nav-links { display: flex; align-items: center; gap: 2px; }
 .nav-links > li { position: relative; }
